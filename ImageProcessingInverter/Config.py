@@ -7,7 +7,7 @@ class Config:
     #Format of a placeholder for specialized entries.
     placeholderI = "[i]"
     
-    #Default ctor.
+    #Default constructor
     def __init__(self,configName):
         file = open(os.getcwd()+"\\"+configName)
         self.configName = configName

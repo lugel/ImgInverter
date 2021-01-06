@@ -4,7 +4,7 @@ from PIL import Image
 
 #This class loads unordered files and puts them in a originals folder.
 class Cauldron(object):
-    #Default ctor.
+    #Default constructor
     def __init__(self, config:Config):
         self.config=config
     #Calling this function will cause a process of normalization of unordered files.

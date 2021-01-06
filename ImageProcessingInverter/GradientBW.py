@@ -1,6 +1,6 @@
 #Implementation of black-white gradient algorithm.
 class GradientBW(object):
-    #Default constructor.
+    #Default constructor
     def __init__(self):
         return None
     #Returns transformation code.

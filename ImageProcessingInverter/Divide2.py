@@ -1,6 +1,6 @@
 #Implementation of division algorithm.
 class Divide2(object):
-    #Default ctor.
+    #Default constructor
     def __init__(self): return None
     #Returns transformation code.
     def GetCode(self): return "DIV"

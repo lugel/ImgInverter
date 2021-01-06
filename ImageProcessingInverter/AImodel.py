@@ -22,7 +22,7 @@ from Transformation import Transformation
 class AImodel(object):
     #Initialized current time.
     today = datetime.now()
-    #Default ctor.
+    #Default constructor
     def __init__(self,transformations:[Transformation]=None,config:Config=None):
         if transformations==None:
             return

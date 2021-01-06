@@ -7,10 +7,7 @@ from ImageMeta import ImageMeta
 from ImageMetaElement import ImageMetaElement
 from Transformation import Transformation
 from CommonValueSubtraction import CommonValueSubtraction
-from GradientR import GradientR
 from GradientBW import GradientBW
-from GradientG import GradientG
-from GradientB import GradientB
 from GreyScale import GreyScale
 from Multiply2 import Multiply2
 from Divide2 import Divide2
@@ -20,6 +17,7 @@ from Noise import Noise
 import random
 
 class ImageTransformer(object):
+    #Default constructor
     def __init__(self, config:Config):
         self.config = config
         self.imageMeta = ImageMeta(self.config)
@@ -33,6 +31,8 @@ class ImageTransformer(object):
         self.transformations.append(Negation())
         self.transformations.append(MeanOfPxl())
         self.transformations.append(Noise())
+
+    #Execute transformation of images
     def Transform(self):
         if(self.config.generateTransformed == True):
             counter = 0
@@ -50,7 +50,6 @@ class ImageTransformer(object):
                 print(str(orgIndex)+" done, out of "+ str(len(files)))
                 orgIndex=orgIndex+1
                 image = Image.open(os.getcwd()+"\\"+self.config.originalFilePath+"\\"+file)
-                #print("Transforming image ->" + file)
                 for transformation in self.transformations:
                     imageData = numpy.array(image) 
                     firstStep = transformation.Transform(imageData)
@@ -68,8 +67,6 @@ class ImageTransformer(object):
                     if self.config.transformationSteps >1:
                         random.seed()
                         choice1 = random.randint(0,len(self.transformations)-1)
-                        #for transformation in self.transformations:
-                        #for transformation in self.transformations:
                         transformation1 = self.transformations[choice1]
                         secondStep = transformation1.Transform(firstStep)
                         secondTransformId = transformation1.GetCode()
@@ -105,6 +102,8 @@ class ImageTransformer(object):
                             if self.config.transformationSteps >3:
                                 print("Reached maximum number of steps (3), further steps wil not be performed.")
             self.imageMeta.SaveMeta()
+
+    #Return transformation object by code
     def GetTransformationByCode(self,code):
         for transformation in self.transformations:
             if transformation.GetCode().lower() == code.lower():
